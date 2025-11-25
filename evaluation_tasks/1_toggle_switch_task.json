@@ -1,0 +1,36 @@
+{
+  "task_name": "Toggle Switch Mechanism",
+  "description": "Bi-stable toggle switch with snap action; convert lever rotation to linear contact shift.",
+  "elements": {
+    "E1": "lever",
+    "E2": "contact"
+  },
+  "states": [
+    { "id": "S1", "description": "Off position" },
+    { "id": "S2", "description": "On position" }
+  ],
+  "elemental_functions": [
+    {
+      "ef_id": "EF1",
+      "type": "Type-1.1",
+      "description": "A lever is pushed to move a contact from off to on; convert rotational input into linear translation of contact.",
+      "behavior": [
+        { "element": "E1", "effort": "-", "motion": "-" },
+        { "element": "E2", "effort": "0", "motion": "+" }
+      ]
+    },
+    {
+      "ef_id": "EF2",
+      "type": "Type-2",
+      "description": "Contact remains latched in either position until lever toggled (snap/constraint).",
+      "behavior": [
+        { "element": "E1", "effort": "0", "motion": "0" },
+        { "element": "E2", "effort": "0", "motion": "0" }
+      ]
+    }
+  ],
+  "specifications_graph": [
+    { "from": "S1", "to": "S2", "using": "EF1" },
+    { "from": "S2", "to": "S2", "using": "EF2" }
+  ]
+}

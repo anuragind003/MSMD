@@ -1,0 +1,24 @@
+{
+  "task_name": "Variable Transmission Mechanism",
+  "description": "Two-state mechanism requiring change in motion ratio; initial 1:1 rotation via gears.",
+  "elements": {
+    "E1": "input_shaft",
+    "E2": "output_shaft"
+  },
+  "states": [
+    { "id": "S1", "description": "Transmission ratio 1:1" },
+    { "id": "S2", "description": "Transmission ratio changed" }
+  ],
+  "elemental_functions": [
+    {
+      "ef_id": "EF1",
+      "type": "Type-1.1",
+      "description": "Initial state provides a 1-to-1 rotational motion transfer between an input shaft and an output shaft using gears.",
+      "behavior": [
+        { "element": "E1", "effort": "-", "motion": "-" },
+        { "element": "E2", "effort": "0", "motion": "+" }
+      ]
+    }
+  ],
+  "specifications_graph": [{ "from": "S1", "to": "S1", "using": "EF1" }]
+}

@@ -1,0 +1,228 @@
+{
+  "rules": [
+    {
+      "rule_id": "R1.1",
+      "description": "Add revolute joint between two elements",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.1" },
+      "suggested_operation": "ADD_REVOLUTE_JOINT",
+      "cost": 1
+    },
+    {
+      "rule_id": "R1.2",
+      "description": "Add prismatic joint between two elements",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.1" },
+      "suggested_operation": "ADD_PRISMATIC_JOINT",
+      "cost": 1
+    },
+    {
+      "rule_id": "R2.1",
+      "description": "Incorporate metamorphic/variable constraint kinematic joint",
+      "mismatch_type": "Kind-3",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.2" },
+      "suggested_operation": "ADD_VARIABLE_JOINT",
+      "cost": 2
+    },
+    {
+      "rule_id": "R3.1",
+      "description": "Impose geometric constraint (add stopper)",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-2" },
+      "suggested_operation": "ADD_STOPPER",
+      "cost": 1
+    },
+    {
+      "rule_id": "R4.1",
+      "description": "Add a return spring along the motion axis",
+      "mismatch_type": "Kind-2",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-3" },
+      "suggested_operation": "ADD_RETURN_SPRING",
+      "cost": 2
+    },
+    {
+      "rule_id": "R5.1",
+      "description": "Add damping element to control motion",
+      "mismatch_type": "Kind-2",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-3" },
+      "suggested_operation": "ADD_DAMPER",
+      "cost": 2
+    },
+    {
+      "rule_id": "R6.1",
+      "description": "Add over-center mechanism for bistable behavior",
+      "mismatch_type": "Kind-2",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-2" },
+      "suggested_operation": "ADD_OVER_CENTER",
+      "cost": 3
+    },
+    {
+      "rule_id": "R7.1",
+      "description": "Add cam mechanism for complex motion profile",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.1" },
+      "suggested_operation": "ADD_CAM_MECHANISM",
+      "cost": 3
+    },
+    {
+      "rule_id": "R8.1",
+      "description": "Add gear train for motion conversion",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.1" },
+      "suggested_operation": "ADD_GEAR_TRAIN",
+      "cost": 2
+    },
+    {
+      "rule_id": "R9.1",
+      "description": "Add link to increase mechanism complexity",
+      "mismatch_type": "Kind-1",
+      "applies_to": { "existing_ef": "Type-1.1", "required_ef": "Type-1.1" },
+      "suggested_operation": "ADD_LINK",
+      "cost": 1
+    },
+    {
+      "rule_id": "R_INV",
+      "description": "Apply kinematic inversion (change which element is ground)",
+      "mismatch_type": "Kind-4",
+      "applies_to": { "existing_ef": "any", "required_ef": "modified_motion" },
+      "suggested_operation": "INVERT_MECHANISM",
+      "cost": 3,
+      "parameters": {
+        "new_ground_element": "variable"
+      },
+      "explanation": "Fixes different element as ground to create new mechanism from same topology"
+    },
+    {
+      "rule_id": "R_SERIES",
+      "description": "Combine two mechanisms in series (output of first drives input of second)",
+      "mismatch_type": "Kind-5",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.1_with_amplification"
+      },
+      "suggested_operation": "SERIES_COMBINE",
+      "cost": 10,
+      "parameters": {
+        "mechanism_1": "existing",
+        "mechanism_2": "from_library"
+      },
+      "explanation": "Couples two mechanisms: Motor → Gearbox → 4-bar linkage"
+    },
+    {
+      "rule_id": "R_PARALLEL",
+      "description": "Combine two mechanisms in parallel (same input drives multiple outputs)",
+      "mismatch_type": "Kind-5",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.1_multi_output"
+      },
+      "suggested_operation": "PARALLEL_COMBINE",
+      "cost": 8,
+      "parameters": {
+        "mechanism_1": "existing",
+        "mechanism_2": "from_library"
+      },
+      "explanation": "Single input drives multiple parallel mechanisms for synchronized motion"
+    },
+    {
+      "rule_id": "R_DETENT",
+      "description": "Add ball-plunger detent for stable positions without power",
+      "mismatch_type": "Kind-2",
+      "applies_to": {
+        "existing_ef": "Type-3",
+        "required_ef": "Type-3_bistable"
+      },
+      "suggested_operation": "ADD_DETENT",
+      "cost": 2,
+      "components": {
+        "type": "ball_plunger",
+        "positions": ["open", "closed"],
+        "detent_force": "5-50N"
+      },
+      "explanation": "Provides multi-position stability with predictable detent force"
+    },
+    {
+      "rule_id": "R_COMPLIANT",
+      "description": "Substitute rigid joint with compliant/flexure element",
+      "mismatch_type": "Kind-6",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.1_precision"
+      },
+      "suggested_operation": "ADD_COMPLIANT_ELEMENT",
+      "cost": 4,
+      "parameters": {
+        "target_joint": "revolute",
+        "flexure_type": "living_hinge_or_flexure"
+      },
+      "explanation": "Replaces pin joint with flexure for zero backlash and friction"
+    },
+    {
+      "rule_id": "R_TOGGLE",
+      "description": "Add toggle mechanism for high mechanical advantage at end positions",
+      "mismatch_type": "Kind-2",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-2_high_force"
+      },
+      "suggested_operation": "ADD_TOGGLE_LINKAGE",
+      "cost": 3,
+      "explanation": "Provides very high force multiplication near toggle position"
+    },
+    {
+      "rule_id": "R_GENEVA",
+      "description": "Add Geneva mechanism for intermittent motion",
+      "mismatch_type": "Kind-7",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.3_intermittent"
+      },
+      "suggested_operation": "ADD_GENEVA_DRIVE",
+      "cost": 4,
+      "parameters": {
+        "num_stations": [4, 6, 8]
+      },
+      "explanation": "Converts continuous rotation to indexed intermittent motion with dwell"
+    },
+    {
+      "rule_id": "R_RATCHET",
+      "description": "Add ratchet and pawl for one-way motion",
+      "mismatch_type": "Kind-7",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.3_one_way"
+      },
+      "suggested_operation": "ADD_RATCHET_PAWL",
+      "cost": 2,
+      "explanation": "Permits motion in one direction, locks in reverse"
+    },
+    {
+      "rule_id": "R_6BAR",
+      "description": "Upgrade to 6-bar linkage for complex motion",
+      "mismatch_type": "Kind-8",
+      "applies_to": {
+        "existing_ef": "Type-1.1",
+        "required_ef": "Type-1.1_complex_path"
+      },
+      "suggested_operation": "ADD_6BAR_LINKAGE",
+      "cost": 5,
+      "parameters": {
+        "type": ["Watt-II", "Stephenson-III"]
+      },
+      "explanation": "Creates sophisticated coupler curves and straight-line approximations"
+    },
+    {
+      "rule_id": "R_OPT",
+      "description": "Optimize dimensional parameters to meet requirements",
+      "mismatch_type": "Kind-9",
+      "applies_to": {
+        "existing_ef": "any",
+        "required_ef": "any"
+      },
+      "suggested_operation": "OPTIMIZE_DIMENSIONS",
+      "cost": 5,
+      "when_to_apply": "after_topology_complete",
+      "explanation": "Runs dimensional optimization to find best link lengths and parameters"
+    }
+  ]
+}

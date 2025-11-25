@@ -1,0 +1,26 @@
+{
+  "task_name": "Simple Gripper Mechanism",
+  "description": "Rotational input on a handle drives two opposing jaws to translate inward and clamp.",
+  "elements": {
+    "E1": "handle",
+    "E2": "jaw_left",
+    "E3": "jaw_right"
+  },
+  "states": [
+    { "id": "S1", "description": "Open" },
+    { "id": "S2", "description": "Closed" }
+  ],
+  "elemental_functions": [
+    {
+      "ef_id": "EF1",
+      "type": "Type-1.1",
+      "description": "Applying torque on a handle causes both jaws to translate inward to clamp an object.",
+      "behavior": [
+        { "element": "E1", "effort": "-", "motion": "-" },
+        { "element": "E2", "effort": "0", "motion": "+" },
+        { "element": "E3", "effort": "0", "motion": "+" }
+      ]
+    }
+  ],
+  "specifications_graph": [{ "from": "S1", "to": "S2", "using": "EF1" }]
+}

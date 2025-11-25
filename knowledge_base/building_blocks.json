@@ -1,0 +1,397 @@
+{
+  "mechanisms": [
+    {
+      "name": "Slider-Crank",
+      "num_elements": 4,
+      "motion_conversion": "Rotation to Translation",
+      "description": "Converts rotational motion of crank to linear motion of slider",
+      "text_description": "A mechanism that converts rotational motion from a crank into linear or reciprocating motion of a slider; a rotating crank drives a slider back and forth along a guide.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Rack and Pinion",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Translation",
+      "description": "Converts rotational motion of pinion to linear motion of rack",
+      "text_description": "A circular gear (pinion) engages a linear gear (rack) to convert rotary input into straight-line translation, commonly used for steering and linear actuation.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spur Gear Pair (External)",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Rotation",
+      "description": "Converts rotational motion with speed reduction",
+      "text_description": "Two external spur gears mesh to transmit torque and rotational motion from one shaft to another with opposite rotation and a speed/torque ratio defined by gear teeth.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Four-Bar Linkage",
+      "num_elements": 4,
+      "motion_conversion": "Rotation to Rotation",
+      "description": "Converts rotational motion with different output characteristics",
+      "text_description": "A closed kinematic chain with four revolute joints that converts input rotation into controlled output rotation/oscillation through coupler motion; versatile motion transmission.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cam-Follower",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Translation",
+      "description": "Converts rotational motion to complex translational motion",
+      "text_description": "A rotating cam drives a follower via surface contact to produce a prescribed linear or oscillatory displacement profile; transforms rotary input into tailored motion output.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scotch Yoke",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Translation",
+      "description": "Converts rotational motion to sinusoidal translational motion",
+      "text_description": "A pin on a rotating disk slides in a slot (yoke) to convert rotary motion into near-sinusoidal linear reciprocation with a direct kinematic relationship.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Worm and Wheel",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Rotation",
+      "description": "Converts rotational motion with high reduction ratio",
+      "text_description": "A screw-like worm drives a worm gear to achieve large speed reduction and torque increase with non-parallel, non-intersecting axes; typically non-backdrivable.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bevel Gear Pair",
+      "num_elements": 3,
+      "motion_conversion": "Rotation to Rotation",
+      "description": "Converts rotational motion between perpendicular axes",
+      "text_description": "Two bevel gears transmit rotation between intersecting (often perpendicular) shafts, changing axis direction with configurable gear ratio.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slider-Crank with Return Spring",
+      "num_elements": 4,
+      "motion_conversion": "Rotation to Translation with Return",
+      "description": "Slider-crank with spring return mechanism",
+      "text_description": "A slider-crank augmented with a spring to bias or return the slider to a rest position, enabling passive reset or force shaping across the stroke.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        },
+        {
+          "behavior": [
+            { "effort": "0", "motion": "+" },
+            { "effort": "0", "motion": "-" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Double Slider-Crank",
+      "num_elements": 4,
+      "motion_conversion": "Translation to Translation",
+      "description": "Converts linear motion to linear motion with different characteristics",
+      "text_description": "A mechanism with two sliders constrained to orthogonal or guided paths, converting one translational input into another with a specific kinematic relationship.",
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "+", "motion": "+" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Watt-II Linkage",
+      "num_elements": 7,
+      "num_joints": 9,
+      "dof": 1,
+      "motion_conversion": "Complex Path Generation",
+      "description": "6-bar linkage for generating sophisticated coupler curves and approximate straight-line motion",
+      "text_description": "A six-bar linkage configuration (Watt's type II) that produces complex coupler point trajectories; widely used in applications requiring sophisticated motion profiles such as car trunk hinges, folding mechanisms, and approximate straight-line generation.",
+      "topology_type": "6-bar",
+      "use_cases": [
+        "Car trunk hinges",
+        "Folding mechanisms",
+        "Approximate straight-line motion",
+        "Complex path generation"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "complex_path" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Stephenson-III Linkage",
+      "num_elements": 7,
+      "num_joints": 9,
+      "dof": 1,
+      "motion_conversion": "Complex Path and Function Generation",
+      "description": "Alternative 6-bar configuration for different coupler curves and motion characteristics",
+      "text_description": "A Stephenson III six-bar linkage providing alternative coupler curve characteristics compared to Watt mechanisms; used in packaging machinery, robotic arms, and prosthetic limb applications where specific motion profiles are required.",
+      "topology_type": "6-bar",
+      "use_cases": [
+        "Packaging machinery",
+        "Robotic arms",
+        "Prosthetic limbs",
+        "Function generation"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "complex_path" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Scissors Mechanism",
+      "num_elements": 5,
+      "num_joints": 6,
+      "dof": 1,
+      "motion_conversion": "Amplified Linear Motion",
+      "description": "Pantograph-style mechanism providing high expansion ratios for vertical or horizontal translation",
+      "text_description": "A scissors-type or pantograph mechanism that provides mechanical advantage through geometric amplification; creates large displacement from small input, commonly used in scissor lifts, adjustable lamp arms, and expandable structures.",
+      "expansion_ratio": "up_to_10x",
+      "use_cases": [
+        "Scissor lifts",
+        "Adjustable arms",
+        "Expandable structures",
+        "Vertical positioning"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Flexure Hinge",
+      "num_elements": 2,
+      "dof": 1,
+      "motion_conversion": "Elastic Deflection",
+      "description": "Monolithic compliant hinge using material flexibility instead of pin joints",
+      "text_description": "A compliant mechanism that achieves rotation through elastic deformation of a thin flexure section rather than traditional pin joints; offers zero friction, no backlash, and maintenance-free operation, ideal for precision instruments and MEMS devices.",
+      "material_properties": {
+        "flexibility": "high",
+        "required_material": "spring_steel_or_polymer",
+        "typical_thickness": "0.1-5mm"
+      },
+      "advantages": [
+        "No friction",
+        "No backlash",
+        "Maintenance-free",
+        "High precision",
+        "No wear"
+      ],
+      "use_cases": [
+        "Precision instruments",
+        "MEMS devices",
+        "Micro-positioning",
+        "Optical mounts"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ],
+          "notes": "Inherent return spring due to elastic restoring force"
+        }
+      ]
+    },
+    {
+      "name": "Living Hinge",
+      "num_elements": 2,
+      "dof": 1,
+      "motion_conversion": "Plastic Flexure",
+      "description": "Thin material section allowing repeated bending in molded plastic parts",
+      "text_description": "A compliant hinge formed by a thin section of plastic material that allows repeated bending; commonly seen in shampoo bottle caps, toolbox lids, and snap-fit assemblies. Provides low-cost hinges in injection-molded parts.",
+      "material_properties": {
+        "required_material": "polypropylene_or_nylon",
+        "typical_thickness": "0.2-0.5mm",
+        "flex_cycles": "100000+"
+      },
+      "use_cases": [
+        "Consumer packaging",
+        "Low-cost hinges",
+        "Snap-fit assemblies",
+        "Molded containers"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "+" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Geneva Drive",
+      "num_elements": 3,
+      "dof": 1,
+      "motion_conversion": "Continuous to Intermittent Rotation",
+      "description": "Converts continuous rotation into precise indexed steps with dwell periods",
+      "text_description": "An indexing mechanism that converts continuous rotary input into intermittent rotary output with precise angular positioning and dwell periods; the driving wheel has a pin that engages slots in the driven wheel. Used extensively in film projectors, automatic tool changers, and indexing tables.",
+      "parameters": {
+        "num_stations": [4, 6, 8, 12],
+        "dwell_angle": "function_of_stations",
+        "motion_type": "intermittent"
+      },
+      "use_cases": [
+        "Film projectors",
+        "Automatic tool changers",
+        "Indexing tables",
+        "Sequential operations"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "intermittent" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ratchet and Pawl",
+      "num_elements": 3,
+      "dof": 1,
+      "motion_conversion": "Bi-directional to Uni-directional",
+      "description": "Allows motion in one direction while preventing reverse motion through mechanical locking",
+      "text_description": "A mechanical device consisting of a toothed wheel (ratchet) and a pivoting lever (pawl) that permits rotation in one direction while preventing motion in the opposite direction; essential for winches, tie-down straps, and anti-reverse mechanisms.",
+      "use_cases": [
+        "Winches",
+        "Tie-down straps",
+        "Clamping devices",
+        "Anti-reverse locks",
+        "Ratcheting wrenches"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "0" },
+            { "effort": "+", "motion": "locked" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Toggle Mechanism",
+      "num_elements": 4,
+      "num_joints": 4,
+      "dof": 1,
+      "motion_conversion": "Small Input to Large Force",
+      "description": "Provides mechanical advantage near toggle position for clamping and pressing operations",
+      "text_description": "A linkage mechanism that achieves very high mechanical advantage when approaching the toggle (over-center) position; used in clamps, presses, and latching mechanisms where large output forces are needed from small input forces.",
+      "use_cases": [
+        "Toggle clamps",
+        "Punch presses",
+        "Circuit breakers",
+        "Mechanical locks"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "+", "motion": "0" }
+          ]
+        },
+        {
+          "behavior": [
+            { "effort": "0", "motion": "0" },
+            { "effort": "+", "motion": "locked" }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Quick-Return Mechanism",
+      "num_elements": 5,
+      "num_joints": 6,
+      "dof": 1,
+      "motion_conversion": "Rotation to Asymmetric Reciprocation",
+      "description": "Converts uniform rotation into reciprocating motion with different forward and return speeds",
+      "text_description": "A mechanism that produces reciprocating motion where the forward stroke takes longer than the return stroke (or vice versa); commonly used in shaper machines, mechanical saws, and applications requiring fast return with slow working stroke.",
+      "use_cases": [
+        "Shaper machines",
+        "Mechanical saws",
+        "Woodworking machinery",
+        "Reciprocating tools"
+      ],
+      "satisfies_efs": [
+        {
+          "behavior": [
+            { "effort": "-", "motion": "-" },
+            { "effort": "0", "motion": "asymmetric" }
+          ]
+        }
+      ]
+    }
+  ]
+}

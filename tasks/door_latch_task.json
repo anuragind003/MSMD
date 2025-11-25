@@ -1,0 +1,57 @@
+{
+  "task_name": "Door Latch Mechanism",
+  "description": "A 2-state mechanism to act as a door latch, with handle and bolt as I/O elements.",
+  "elements": {
+    "E1": "handle",
+    "E2": "bolt"
+  },
+  "states": [
+    { "id": "CS1", "description": "Handle=θ₀, Bolt=x₀ (Latched)" },
+    { "id": "CS2", "description": "Handle=θ₁, Bolt=x₁ (Unlatched)" },
+    { "id": "CS3", "description": "Handle=θ₀, Bolt=x₁ (Slamming)" }
+  ],
+  "elemental_functions": [
+    {
+      "ef_id": "EF1",
+      "type": "Type-1.1",
+      "description": "Apply torque on handle to retract bolt.",
+      "behavior": [
+        { "element": "E1", "effort": "-", "motion": "-" },
+        { "element": "E2", "effort": "0", "motion": "+" }
+      ]
+    },
+    {
+      "ef_id": "EF2",
+      "type": "Type-2",
+      "description": "Handle cannot be over-rotated.",
+      "behavior": [
+        { "element": "E1", "effort": "-", "motion": "0" },
+        { "element": "E2", "effort": "0", "motion": "0" }
+      ]
+    },
+    {
+      "ef_id": "EF3",
+      "type": "Type-3",
+      "description": "Release handle, spring returns it.",
+      "behavior": [
+        { "element": "E1", "effort": "0", "motion": "+" },
+        { "element": "E2", "effort": "0", "motion": "-" }
+      ]
+    },
+    {
+      "ef_id": "EF4",
+      "type": "Type-1.2",
+      "description": "Push bolt in (slamming), handle does not move.",
+      "behavior": [
+        { "element": "E1", "effort": "0", "motion": "0" },
+        { "element": "E2", "effort": "+", "motion": "+" }
+      ]
+    }
+  ],
+  "specifications_graph": [
+    { "from": "CS1", "to": "CS2", "using": "EF1" },
+    { "from": "CS2", "to": "CS2", "using": "EF2" },
+    { "from": "CS2", "to": "CS1", "using": "EF3" },
+    { "from": "CS1", "to": "CS3", "using": "EF4" }
+  ]
+}
